@@ -30,7 +30,6 @@ QPushButton:hover {
 QTableWidget {
     background-color: #f0f0ff;
     border: 1px solid #5B3417;
-    gridline-color: #5B3417;
 }
 QHeaderView::section {
     background-color: #E58E34;
