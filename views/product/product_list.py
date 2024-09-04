@@ -66,7 +66,7 @@ class ProductList(QWidget):
 
     def add_product(self):
         dialog = ProductDialog(self)
-        if dialog.exec() == QDialog.accepted:
+        if dialog.exec() == QDialog.Accepted:
             data = dialog.get_data()
             product = Product(
                 name=data['name'],
@@ -94,7 +94,7 @@ class ProductList(QWidget):
             'price': product.price
         })
 
-        if dialog.exec() == QDialog.accepted:
+        if dialog.exec_() == QDialog.Accepted:
             data = dialog.get_data()
             product.name = data['name']
             product.description = data['description']
