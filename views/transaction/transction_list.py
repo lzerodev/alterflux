@@ -43,22 +43,24 @@ class TransactionList(QWidget):
 
     def load_data(self):
         self.table.setRowCount(0)
+
         transactions = session.query(Transaction).all()
+
         for transaction in transactions:
-          product = session.query(Product).get(transaction.product_id)
-        product_name = product.name if product else "Produto Desconhecido"
-        product_price = product.price if product else 0
+            product = session.query(Product).get(transaction.product_id)
+            product_name = product.name if product else "Produto Desconhecido"
+            product_price = product.price if product else 0
 
-        total_item = transaction.quantity * product_price
+            total_item = transaction.quantity * product_price
 
-        row_position = self.table.rowCount()
-        self.table.insertRow(row_position)
-        self.table.setItem(row_position, 0, QTableWidgetItem(product_name))
-        self.table.setItem(row_position, 1, QTableWidgetItem(str(transaction.quantity)))
-        self.table.setItem(row_position, 2, QTableWidgetItem(transaction.transaction_type))
-        self.table.setItem(row_position, 3, QTableWidgetItem(transaction.date.strftime('%d/%m/%Y %H:%M:%S')))
-        self.table.setItem(row_position, 4, QTableWidgetItem(f"R$ {product_price:.2f}"))
-        self.table.setItem(row_position, 5, QTableWidgetItem(f"R$ {total_item:.2f}"))
+            row_position = self.table.rowCount()
+            self.table.insertRow(row_position)
+            self.table.setItem(row_position, 0, QTableWidgetItem(product_name))
+            self.table.setItem(row_position, 1, QTableWidgetItem(str(transaction.quantity)))
+            self.table.setItem(row_position, 2, QTableWidgetItem(transaction.transaction_type))
+            self.table.setItem(row_position, 3, QTableWidgetItem(transaction.date.strftime('%d/%m/%Y %H:%M:%S')))
+            self.table.setItem(row_position, 4, QTableWidgetItem(f"R$ {product_price:.2f}"))
+            self.table.setItem(row_position, 5, QTableWidgetItem(f"R$ {total_item:.2f}"))
 
     def add_transaction(self):
         dialog = TransactionDialog(self)
